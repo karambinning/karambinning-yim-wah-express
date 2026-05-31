@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yim Wah Express — Authentic Cantonese · Cambridge</title>
+<meta name="description" content="Yim Wah Express. Authentic Cantonese cooking and Hong Kong-style roasted meats on Lensfield Road, Cambridge. Lunch and dinner, Monday to Saturday.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap">
+<style>
+:root{
+  --ink:#1a100d;
+  --paper:#f2e8d3;
+  --paper-2:#ebdfc4;
+  --lacquer:#7a1a1a;
+  --lacquer-deep:#561010;
+  --gold:#c99a3b;
+  --gold-soft:#a47e2c;
+  --magenta:#93268f;
+  --rule:rgba(26,16,13,.18);
+  --shadow:0 1px 0 rgba(26,16,13,.2);
+  --display:"Fraunces", ui-serif, Georgia, "Iowan Old Style", serif;
+  --body:"Lora", ui-serif, Georgia, serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:clamp(1rem, .82rem + .55vw, 1.1rem);
+  line-height:1.55;
+  font-feature-settings:"onum","liga","kern";
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* Subtle paper grain so we don't get the AI flat-white-with-one-accent look */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(rgba(89,55,30,.08) 1px, transparent 1px),
+    radial-gradient(rgba(89,55,30,.05) 1px, transparent 1px);
+  background-size:3px 3px, 7px 7px;
+  background-position:0 0, 1px 1px;
+  mix-blend-mode:multiply;
+  opacity:.55;
+}
+
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.18em}
+a:hover{text-decoration-thickness:2px}
+h1,h2,h3,h4{font-family:var(--display);font-weight:600;text-wrap:balance;letter-spacing:-.012em}
+p{text-wrap:pretty;hyphens:auto}
+
+.container{max-width:78rem;margin:0 auto;padding:0 clamp(1.1rem,4vw,2.4rem);position:relative;z-index:1}
+
+/* ── Status pill (sticky) ─────────────────────────────────── */
+.status{
+  position:sticky;top:0;z-index:30;
+  background:var(--ink);color:var(--paper);
+  font-family:var(--display);
+  font-variation-settings:"opsz" 14, "wght" 500;
+  font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:.5rem 1rem;display:flex;justify-content:center;gap:1.25rem;
+  border-bottom:1px solid var(--gold-soft);
+}
+.status span{display:inline-flex;align-items:center;gap:.4rem}
+.status .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(201,154,59,.18)}
+.status .sep{opacity:.4}
+.status .hide-sm{display:none}
+@media (min-width:46rem){
+  .status{font-size:.82rem}
+  .status .hide-sm{display:inline-flex}
+}
+
+/* ── Header / nav ─────────────────────────────────────────── */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.4rem 0 1rem;
+  border-bottom:1px solid var(--rule);
+}
+.nav .mark{
+  font-family:var(--display);
+  font-variation-settings:"opsz" 36, "wght" 700;
+  font-size:1.3rem;letter-spacing:-.01em;
+}
+.nav .mark .han{
+  font-family:"Noto Serif TC", var(--display);
+  font-weight:500;color:var(--lacquer);margin-right:.45rem;
+  font-size:1.15em;
+}
+.nav ul{list-style:none;display:flex;gap:1.4rem;font-size:.86rem;letter-spacing:.05em;text-transform:uppercase;font-family:var(--display);font-variation-settings:"opsz" 14, "wght" 500}
+.nav ul a{text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;transition:border-color .25s}
+.nav ul a:hover{border-bottom-color:var(--lacquer)}
+.nav .tel{display:none}
+@media (min-width:62rem){
+  .nav .tel{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1rem;border:1px solid var(--ink);border-radius:999px;font-family:var(--display);font-size:.85rem;font-variation-settings:"opsz" 14, "wght" 500;letter-spacing:.04em;text-decoration:none}
+  .nav .tel:hover{background:var(--ink);color:var(--paper)}
+}
+@media (max-width:46rem){
+  .nav ul{display:none}
+}
+
+/* ── Hero / masthead ──────────────────────────────────────── */
+.hero{position:relative;padding:clamp(2.5rem,8vw,6rem) 0 clamp(2rem,5vw,4rem);overflow:hidden}
+.hero .han-watermark{
+  position:absolute;
+  right:-2vw;top:50%;transform:translateY(-50%);
+  font-family:"Noto Serif TC", var(--display);
+  font-size:clamp(18rem,40vw,38rem);
+  line-height:.85;
+  color:var(--magenta);
+  opacity:.07;
+  letter-spacing:-.08em;
+  pointer-events:none;
+  user-select:none;
+  font-weight:600;
+}
+.hero .kicker{
+  font-family:var(--display);
+  font-variation-settings:"opsz" 14, "wght" 500;
+  letter-spacing:.32em;text-transform:uppercase;font-size:.78rem;
+  color:var(--lacquer);
+  margin-bottom:1.4rem;
+  display:flex;align-items:center;gap:.8rem;
+}
+.hero .kicker::before{
+  content:"";display:inline-block;width:2.4rem;height:1px;background:var(--lacquer);
+}
+.hero h1{
+  font-variation-settings:"opsz" 144, "wght" 600, "SOFT" 30;
+  font-size:clamp(3.4rem, 11.5vw, 9.5rem);
+  line-height:.88;
+  letter-spacing:-.035em;
+  max-width:14ch;
+  margin-bottom:1.5rem;
+}
+.hero h1 em{
+  font-style:italic;
+  font-variation-settings:"opsz" 144, "wght" 400, "SOFT" 80;
+  color:var(--lacquer);
+}
+.hero .lede{
+  max-width:34rem;
+  font-size:clamp(1.05rem,.85rem+.7vw,1.32rem);
+  line-height:1.5;
+  margin-bottom:2.2rem;
+  color:#3a2820;
+}
+.hero .lede strong{color:var(--ink);font-weight:600}
+.hero .actions{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.95rem 1.5rem;
+  font-family:var(--display);font-variation-settings:"opsz" 14, "wght" 500;
+  font-size:.92rem;letter-spacing:.04em;
+  text-decoration:none;
+  border-radius:0;
+  transition:transform .25s, background .25s, color .25s, box-shadow .25s;
+}
+.btn-solid{background:var(--lacquer);color:var(--paper);box-shadow:var(--shadow)}
+.btn-solid:hover{background:var(--lacquer-deep);transform:translateY(-1px)}
+.btn-ghost{border:1px solid var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.btn .arrow{transition:transform .25s}
+.btn:hover .arrow{transform:translateX(4px)}
+
+/* ── Marquee strip ────────────────────────────────────────── */
+.strip{
+  background:var(--ink);color:var(--paper);
+  border-top:1px solid var(--gold-soft);
+  border-bottom:1px solid var(--gold-soft);
+  overflow:hidden;
+  padding:1rem 0;
+  font-family:var(--display);
+  font-variation-settings:"opsz" 24, "wght" 500;
+  letter-spacing:.06em;
+  font-size:clamp(1rem,.85rem+.55vw,1.4rem);
+}
+.strip-track{
+  display:inline-flex;gap:3rem;white-space:nowrap;
+  animation:scroll 38s linear infinite;
+}
+.strip-track span{display:inline-flex;align-items:center;gap:3rem}
+.strip-track .han{font-family:"Noto Serif TC", var(--display);color:var(--gold);font-size:1.15em}
+.strip-track .dot{color:var(--gold);opacity:.7}
+@keyframes scroll{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.strip-track{animation:none}}
+
+/* ── Story slab ───────────────────────────────────────────── */
+.story{padding:clamp(3rem,7vw,5.5rem) 0;border-bottom:1px solid var(--rule)}
+.story-grid{display:grid;grid-template-columns:1fr;gap:2.4rem}
+@media (min-width:60rem){.story-grid{grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start}}
+.story h2{
+  font-variation-settings:"opsz" 96, "wght" 500;
+  font-size:clamp(2rem,1.4rem+2.5vw,3.6rem);
+  line-height:1;
+  position:sticky;top:5rem;
+}
+.story h2 em{
+  font-style:italic;color:var(--lacquer);
+  font-variation-settings:"opsz" 96, "wght" 400, "SOFT" 90;
+}
+.story-body p{margin-bottom:1.25rem;font-size:clamp(1.02rem,.9rem+.45vw,1.18rem);line-height:1.65}
+.story-body p:first-of-type::first-letter{
+  font-family:var(--display);
+  font-variation-settings:"opsz" 144, "wght" 600;
+  float:left;font-size:5.4em;line-height:.82;
+  padding:.05em .12em 0 0;
+  color:var(--lacquer);
+}
+
+/* ── Specialities grid ────────────────────────────────────── */
+.specs{padding:clamp(3rem,7vw,5.5rem) 0;border-bottom:1px solid var(--rule)}
+.specs-head{display:flex;align-items:end;justify-content:space-between;gap:2rem;margin-bottom:2.8rem;flex-wrap:wrap}
+.specs h2{
+  font-variation-settings:"opsz" 96, "wght" 500;
+  font-size:clamp(1.9rem,1.4rem+2vw,3.2rem);
+  line-height:1;
+  max-width:14ch;
+}
+.specs-head .han-strap{
+  font-family:"Noto Serif TC", var(--display);
+  font-size:clamp(1.6rem,1.2rem+1.5vw,2.6rem);
+  color:var(--gold-soft);
+  letter-spacing:.15em;
+}
+.specs-grid{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--ink)}
+@media (min-width:46rem){.specs-grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:70rem){.specs-grid{grid-template-columns:repeat(3,1fr)}}
+.spec{
+  border-bottom:1px solid var(--ink);
+  padding:2rem 1.6rem 2.4rem;
+  position:relative;
+  display:flex;flex-direction:column;gap:.6rem;
+}
+@media (min-width:46rem){
+  .spec:not(:nth-child(2n)){border-right:1px solid var(--ink)}
+}
+@media (min-width:70rem){
+  .spec{border-right:1px solid var(--ink)}
+  .spec:nth-child(3n){border-right:none}
+  .spec:not(:nth-child(2n)){border-right:1px solid var(--ink)}
+}
+.spec .num{
+  font-family:var(--display);
+  font-variation-settings:"opsz" 14, "wght" 500;
+  font-size:.78rem;letter-spacing:.2em;color:var(--lacquer);
+}
+.spec h3{
+  font-variation-settings:"opsz" 60, "wght" 600;
+  font-size:clamp(1.5rem,1.1rem+1vw,2rem);
+  line-height:1.05;
+  margin-top:.4rem;
+}
+.spec h3 .han{
+  font-family:"Noto Serif TC", var(--display);
+  display:block;font-size:.62em;color:var(--gold-soft);margin-top:.3rem;letter-spacing:.05em;font-weight:500;
+}
+.spec p{font-size:.98rem;color:#3a2820;line-height:1.5}
+
+/* Reveal on scroll where supported */
+@supports (animation-timeline:view()){
+  .reveal{
+    animation:rise both;
+    animation-timeline:view();
+    animation-range:entry 5% cover 25%;
+  }
+  @keyframes rise{
+    from{opacity:0;transform:translateY(1.8rem)}
+    to{opacity:1;transform:translateY(0)}
+  }
+}
+@media (prefers-reduced-motion:reduce){.reveal{animation:none !important;opacity:1 !important;transform:none !important}}
+
+/* ── Menu broadsheet ──────────────────────────────────────── */
+.menu{padding:clamp(3rem,7vw,5.5rem) 0;background:var(--paper-2);border-bottom:1px solid var(--rule);position:relative}
+.menu-head{text-align:center;margin-bottom:3rem}
+.menu-head .ornament{
+  display:inline-flex;align-items:center;gap:.9rem;
+  font-family:var(--display);
+  font-variation-settings:"opsz" 14, "wght" 500;
+  font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;color:var(--lacquer);
+  margin-bottom:1rem;
+}
+.menu-head .ornament::before,.menu-head .ornament::after{
+  content:"";display:inline-block;width:2.5rem;height:1px;background:var(--lacquer);
+}
+.menu h2{
+  font-variation-settings:"opsz" 144, "wght" 500, "SOFT" 30;
+  font-size:clamp(2.4rem,1.6rem+3vw,4.4rem);
+  line-height:.95;
+}
+.menu h2 em{
+  font-style:italic;color:var(--lacquer);
+  font-variation-settings:"opsz" 144, "wght" 400, "SOFT" 100;
+}
+.menu .sub{margin-top:.6rem;font-size:1rem;color:#3a2820;max-width:34rem;margin-left:auto;margin-right:auto}
+
+.menu-grid{display:grid;grid-template-columns:1fr;gap:2.6rem;margin-top:3rem}
+@media (min-width:50rem){.menu-grid{grid-template-columns:1fr 1fr;gap:3.6rem 4rem}}
+
+.menu-card h3{
+  font-variation-settings:"opsz" 60, "wght" 600;
+  font-size:clamp(1.35rem,1rem+.8vw,1.65rem);
+  letter-spacing:-.005em;
+  display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  padding-bottom:.8rem;border-bottom:1px solid var(--ink);
+  margin-bottom:1.4rem;
+}
+.menu-card h3 .han{
+  font-family:"Noto Serif TC", var(--display);
+  font-size:.78em;color:var(--lacquer);font-weight:500;letter-spacing:.05em;
+}
+.menu-list{list-style:none;display:flex;flex-direction:column;gap:1rem}
+.menu-list li{
+  display:grid;grid-template-columns:1fr auto;gap:.5rem;
+  align-items:baseline;font-size:1.02rem;
+}
+.menu-list li .name{position:relative;overflow:hidden}
+.menu-list li .name::after{
+  content:"";display:inline-block;width:100%;margin-left:.5rem;
+  border-bottom:1px dotted rgba(26,16,13,.35);
+  vertical-align:.18em;
+}
+.menu-list li .note{display:block;font-size:.86rem;font-style:italic;color:#5b3f30;margin-top:.1rem}
+.menu-list li .tag{
+  font-family:var(--display);
+  font-variation-settings:"opsz" 14, "wght" 500;
+  font-size:.86rem;color:var(--lacquer);letter-spacing:.02em;
+  white-space:nowrap;
+}
+.menu-cta{text-align:center;margin-top:3rem;font-size:.95rem;color:#3a2820}
+.menu-cta a{color:var(--lacquer);font-weight:600}
+
+/* ── Visit / contact slab ─────────────────────────────────── */
+.visit{padding:clamp(3rem,7vw,5.5rem) 0;background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.visit::before{
+  content:"翼華";
+  position:absolute;left:-2vw;bottom:-12vw;
+  font-family:"Noto Serif TC", var(--display);
+  font-size:clamp(14rem,32vw,28rem);
+  color:var(--lacquer);opacity:.18;
+  line-height:.85;letter-spacing:-.05em;font-weight:600;
+  pointer-events:none;user-select:none;
+}
+.visit .container{position:relative;z-index:1}
+.visit-grid{display:grid;grid-template-columns:1fr;gap:2.4rem}
+@media (min-width:60rem){.visit-grid{grid-template-columns:1.1fr 1fr;gap:5rem;align-items:start}}
+.visit h2{
+  font-variation-settings:"opsz" 144, "wght" 500, "SOFT" 30;
+  font-size:clamp(2.4rem,1.6rem+3vw,4.4rem);
+  line-height:.95;
+  color:var(--paper);
+  margin-bottom:1.4rem;
+}
+.visit h2 em{
+  font-style:italic;color:var(--gold);
+  font-variation-settings:"opsz" 144, "wght" 400, "SOFT" 100;
+}
+.visit p.lede{font-size:clamp(1.05rem,.9rem+.5vw,1.25rem);color:rgba(242,232,211,.85);max-width:32rem;line-height:1.55}
+.visit .address-block{
+  font-family:var(--display);
+  font-variation-settings:"opsz" 36, "wght" 500;
+  font-size:clamp(1.4rem,1rem+1vw,2rem);
+  line-height:1.3;
+  letter-spacing:-.005em;
+  margin:2rem 0 1.5rem;
+}
+.visit .address-block .gold{color:var(--gold)}
+.visit .quick-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem}
+.visit .btn-gold{background:var(--gold);color:var(--ink);box-shadow:none}
+.visit .btn-gold:hover{background:#d9a943;transform:translateY(-1px)}
+.visit .btn-outline{border:1px solid var(--paper);color:var(--paper)}
+.visit .btn-outline:hover{background:var(--paper);color:var(--ink)}
+
+.hours{
+  border-top:1px solid rgba(242,232,211,.25);
+  padding-top:1.6rem;
+  display:flex;flex-direction:column;gap:1rem;
+}
+.hours-head{
+  font-family:var(--display);
+  font-variation-settings:"opsz" 14, "wght" 500;
+  font-size:.82rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:.6rem;
+}
+.hours-row{
+  display:grid;grid-template-columns:max-content 1fr;gap:1.4rem;
+  font-size:1.02rem;
+  padding-bottom:.7rem;
+  border-bottom:1px dashed rgba(242,232,211,.18);
+  align-items:baseline;
+}
+.hours-row:last-of-type{border-bottom:0}
+.hours-row .day{
+  font-family:var(--display);font-variation-settings:"opsz" 24, "wght" 500;
+  letter-spacing:.04em;
+  color:var(--paper);
+}
+.hours-row .times{color:rgba(242,232,211,.85);font-variant-numeric:tabular-nums oldstyle-nums}
+.hours-row .times .seg{display:inline-block;margin-right:.6rem}
+.hours-row.closed .times{color:rgba(242,232,211,.55);font-style:italic}
+
+/* ── Footer ───────────────────────────────────────────────── */
+footer{padding:3rem 0 2.4rem;font-size:.88rem;color:#4a3327;border-top:1px solid var(--rule)}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1.6rem}
+footer .mark{
+  font-family:var(--display);font-variation-settings:"opsz" 60, "wght" 600;
+  font-size:1.4rem;color:var(--ink);
+}
+footer .mark .han{font-family:"Noto Serif TC", var(--display);color:var(--lacquer);margin-right:.4rem}
+footer .meta{display:flex;flex-direction:column;gap:.3rem;text-align:right}
+footer .meta a{color:var(--ink)}
+footer .credit{font-size:.78rem;color:#7a5d4a;margin-top:1.6rem;letter-spacing:.04em}
+
+/* ── Selection ───────────────────────────────────────────── */
+::selection{background:var(--lacquer);color:var(--paper)}
+</style>
+</head>
+<body>
+
+<!-- Sticky status pill -->
+<div class="status" role="status" aria-live="polite">
+  <span><span class="dot" aria-hidden="true"></span> Open today · Lunch &amp; Dinner</span>
+  <span class="sep hide-sm">·</span>
+  <span class="hide-sm">2–4 Lensfield Road · Cambridge CB2 1EG</span>
+  <span class="sep">·</span>
+  <span><a href="tel:+441223309530" style="color:inherit;text-decoration:none">01223 309530</a></span>
+</div>
+
+<div class="container">
+  <nav class="nav" aria-label="Primary">
+    <a href="#top" class="mark" aria-label="Yim Wah Express — home"><span class="han" aria-hidden="true">翼華</span>Yim Wah Express</a>
+    <ul>
+      <li><a href="#story">Kitchen</a></li>
+      <li><a href="#specs">Roasted Meats</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <a class="tel" href="tel:+441223309530" aria-label="Call Yim Wah Express">
+      <span aria-hidden="true">☎</span> 01223 309530
+    </a>
+  </nav>
+</div>
+
+<header class="hero" id="top">
+  <div aria-hidden="true" class="han-watermark">翼華</div>
+  <div class="container">
+    <div class="kicker">Established Lensfield Road · Cambridge</div>
+    <h1>Yim Wah <em>Express.</em><br>Authentic Cantonese, on Lensfield Road.</h1>
+    <p class="lede">A small, family-run kitchen serving <strong>Hong Kong-style roasted meats</strong> and the Cantonese classics we grew up on — char siu, roast duck, crispy pork belly, beef ho fun — cooked the long way, the only way we know.</p>
+    <div class="actions">
+      <a class="btn btn-solid" href="#menu">See the menu <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href="tel:+441223309530">Call to reserve</a>
+    </div>
+  </div>
+</header>
+
+<!-- Marquee strip -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-track">
+    <span>
+      <span class="han">港式燒味</span><span>Cantonese Roasted Meats</span><span class="dot">◆</span>
+      <span>Char Siu</span><span class="dot">◆</span>
+      <span>Roast Duck</span><span class="dot">◆</span>
+      <span>Crispy Pork Belly</span><span class="dot">◆</span>
+      <span>Beef Ho Fun</span><span class="dot">◆</span>
+      <span>Dim Sum &amp; Rice Plates</span><span class="dot">◆</span>
+      <span class="han">飲茶</span><span>Yum Cha</span><span class="dot">◆</span>
+    </span>
+    <span aria-hidden="true">
+      <span class="han">港式燒味</span><span>Cantonese Roasted Meats</span><span class="dot">◆</span>
+      <span>Char Siu</span><span class="dot">◆</span>
+      <span>Roast Duck</span><span class="dot">◆</span>
+      <span>Crispy Pork Belly</span><span class="dot">◆</span>
+      <span>Beef Ho Fun</span><span class="dot">◆</span>
+      <span>Dim Sum &amp; Rice Plates</span><span class="dot">◆</span>
+      <span class="han">飲茶</span><span>Yum Cha</span><span class="dot">◆</span>
+    </span>
+  </div>
+</div>
+
+<!-- Story slab -->
+<section class="story" id="story">
+  <div class="container">
+    <div class="story-grid">
+      <h2 class="reveal">The <em>kitchen</em>, &amp; the people in it.</h2>
+      <div class="story-body reveal">
+        <p>Yim Wah Express is a Cantonese kitchen on the corner of Lensfield Road — the kind of place where the duck has been hanging since first light and the chef still answers the phone himself. We cook the food we know: the slow, hands-on cooking of Hong Kong's siu mei masters, plated for a Cambridge lunch hour.</p>
+        <p>Char siu is rubbed, hung, and lacquered through three glazes. The duck is salted and air-dried before it ever meets the oven. Beef ho fun is fired in a wok hot enough to leave the smoke on the noodle — what Cantonese cooks call <em>wok hei</em>, "the breath of the wok".</p>
+        <p>None of it is fancy. All of it is honest. The same dishes our families ate on a Sunday in Sham Shui Po; the same dishes we'd like you to eat with yours, this Sunday, in Cambridge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Specialities -->
+<section class="specs" id="specs">
+  <div class="container">
+    <div class="specs-head">
+      <h2 class="reveal">Hong Kong roasted meats, <em>cooked properly.</em></h2>
+      <div class="han-strap" aria-hidden="true">港式燒味</div>
+    </div>
+    <div class="specs-grid">
+      <article class="spec reveal">
+        <span class="num">No. 01</span>
+        <h3>Char Siu<span class="han" aria-hidden="true">叉燒</span></h3>
+        <p>Marinated overnight in five-spice, hoisin, fermented bean curd and maltose. Roasted on the upper rack until the edges char and the glaze caramelises. Carved to order, served on rice.</p>
+      </article>
+      <article class="spec reveal">
+        <span class="num">No. 02</span>
+        <h3>Roast Duck<span class="han" aria-hidden="true">燒鴨</span></h3>
+        <p>Five-spiced and stuffed, the cavity sewn, the skin scalded and air-dried. Roasted until the skin lacquers and crackles. Chopped on the bone, served with plum sauce.</p>
+      </article>
+      <article class="spec reveal">
+        <span class="num">No. 03</span>
+        <h3>Crispy Pork Belly<span class="han" aria-hidden="true">燒肉</span></h3>
+        <p>Belly seasoned underneath, the rind pricked and salted. Roasted skin-side up until it puffs and shatters under the cleaver. Served with English mustard and caster sugar.</p>
+      </article>
+      <article class="spec reveal">
+        <span class="num">No. 04</span>
+        <h3>Beef Ho Fun<span class="han" aria-hidden="true">乾炒牛河</span></h3>
+        <p>Flat rice noodles, marinated beef, bean sprouts, spring onion. Fired together in a wok hot enough to leave the smoke on the noodle — <em>wok hei</em>, the breath of the wok.</p>
+      </article>
+      <article class="spec reveal">
+        <span class="num">No. 05</span>
+        <h3>Soy Chicken<span class="han" aria-hidden="true">豉油雞</span></h3>
+        <p>A whole bird poached in a master stock of soy, rock sugar, ginger and Shaoxing wine. Lifted out glossy, chopped to order. Served with ginger-spring-onion oil.</p>
+      </article>
+      <article class="spec reveal">
+        <span class="num">No. 06</span>
+        <h3>Rice &amp; Noodle Plates<span class="han" aria-hidden="true">飯麵</span></h3>
+        <p>Pick one meat, or pick two. Steamed jasmine rice or stir-fried noodles. Bok choy on the side. The lunchtime plate the way it's served in any siu mei shop in Mong Kok.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Menu broadsheet -->
+<section class="menu" id="menu">
+  <div class="container">
+    <div class="menu-head">
+      <div class="ornament">A taste of the menu</div>
+      <h2>The <em>menu</em>, by section.</h2>
+      <p class="sub">A selection from the kitchen, set out the way we think about it. Full set menus, à la carte, drinks and desserts are available on request — call ahead and we'll send a copy.</p>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-card reveal">
+        <h3>Roasted Meats <span class="han" aria-hidden="true">燒味</span></h3>
+        <ul class="menu-list">
+          <li><div><span class="name">Char Siu on Rice</span><span class="note">honey-roast pork, jasmine rice, choi sum</span></div></li>
+          <li><div><span class="name">Roast Duck on Rice</span><span class="note">half or quarter, plum sauce, ginger-spring onion oil</span></div></li>
+          <li><div><span class="name">Crispy Pork Belly on Rice</span><span class="note">shatter-crackling rind, mustard &amp; sugar</span></div></li>
+          <li><div><span class="name">Soy Chicken on Rice</span><span class="note">poached in master stock, ginger oil</span></div></li>
+          <li><div><span class="name">Two-Meat Combination</span><span class="note">any two from the meat counter, on rice</span></div></li>
+        </ul>
+      </div>
+
+      <div class="menu-card reveal">
+        <h3>Wok &amp; Noodle <span class="han" aria-hidden="true">炒粉麵</span></h3>
+        <ul class="menu-list">
+          <li><div><span class="name">Beef Ho Fun</span><span class="note">dry-fried flat noodle, bean sprout, spring onion</span></div></li>
+          <li><div><span class="name">Singapore Vermicelli</span><span class="note">curried thin rice noodle, char siu, prawn</span></div></li>
+          <li><div><span class="name">Yeung Chow Fried Rice</span><span class="note">char siu, prawn, egg, peas</span></div></li>
+          <li><div><span class="name">Salt &amp; Pepper Squid</span><span class="note">chilli, garlic, spring onion</span></div></li>
+          <li><div><span class="name">Wonton Noodle Soup</span><span class="note">prawn-and-pork wontons, thin egg noodle</span></div></li>
+        </ul>
+      </div>
+
+      <div class="menu-card reveal">
+        <h3>Casseroles &amp; Sides <span class="han" aria-hidden="true">煲菜小菜</span></h3>
+        <ul class="menu-list">
+          <li><div><span class="name">Aubergine &amp; Minced Pork Pot</span><span class="note">clay-pot, salted fish, garlic</span></div></li>
+          <li><div><span class="name">Beancurd Hot Pot</span><span class="note">silken tofu, mushroom, oyster sauce</span></div></li>
+          <li><div><span class="name">Bok Choy in Garlic</span><span class="note">blanched then wok-flashed</span></div></li>
+          <li><div><span class="name">Steamed Jasmine Rice</span></div></li>
+        </ul>
+      </div>
+
+      <div class="menu-card reveal">
+        <h3>Set Menu, Desserts &amp; Drinks <span class="han" aria-hidden="true">套餐</span></h3>
+        <ul class="menu-list">
+          <li><div><span class="name">Set Menu for Two</span><span class="note">starter, two meats, noodle, side &amp; dessert</span></div></li>
+          <li><div><span class="name">Set Menu for Four</span><span class="note">family-style sharing menu — call ahead</span></div></li>
+          <li><div><span class="name">Mango Pudding</span><span class="note">house-made, evaporated milk</span></div></li>
+          <li><div><span class="name">Wines, Tsingtao, Tea</span><span class="note">jasmine, oolong, pu-erh</span></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="menu-cta">
+      For full set menus, the à la carte list and the wine card —
+      <a href="tel:+441223309530">call 01223 309530</a> or
+      <a href="mailto:info@yimwahexpress.co.uk">email the kitchen</a>.
+    </p>
+  </div>
+</section>
+
+<!-- Visit -->
+<section class="visit" id="visit">
+  <div class="container">
+    <div class="visit-grid">
+      <div>
+        <h2>Find us on <em>Lensfield Road.</em></h2>
+        <p class="lede">Two minutes from the Catholic Church, five minutes from the Fitzwilliam Museum, a short walk down Trumpington Street from the city centre. There's parking on Tennis Court Road and on Fitzwilliam Street.</p>
+        <p class="address-block">
+          <span class="gold">Yim Wah Express</span><br>
+          2–4 Lensfield Road<br>
+          Cambridge <span class="gold">CB2 1EG</span>
+        </p>
+        <div class="quick-actions">
+          <a class="btn btn-gold" href="tel:+441223309530">Call 01223 309530</a>
+          <a class="btn btn-outline" href="mailto:info@yimwahexpress.co.uk">Email the kitchen</a>
+        </div>
+      </div>
+
+      <div class="hours" aria-label="Opening hours">
+        <div class="hours-head">Opening hours</div>
+        <div class="hours-row">
+          <span class="day">Monday — Saturday</span>
+          <span class="times"><span class="seg">Lunch 11:30 – 14:30</span><span class="seg">Dinner 17:00 – 21:30</span></span>
+        </div>
+        <div class="hours-row closed">
+          <span class="day">Sunday</span>
+          <span class="times">Closed</span>
+        </div>
+        <div class="hours-row" style="border-bottom:0;padding-top:.4rem">
+          <span class="day" style="color:var(--gold)">Reservations</span>
+          <span class="times">By phone or email — walk-ins welcome at lunch</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="mark"><span class="han" aria-hidden="true">翼華</span>Yim Wah Express</div>
+      <div class="meta">
+        <span><a href="tel:+441223309530">01223 309530</a> · <a href="mailto:info@yimwahexpress.co.uk">info@yimwahexpress.co.uk</a></span>
+        <span>2–4 Lensfield Road · Cambridge CB2 1EG</span>
+        <span>Mon–Sat 11:30–14:30 · 17:00–21:30 · Closed Sundays</span>
+      </div>
+    </div>
+    <p class="credit">Authentic Cantonese cooking · Hong Kong-style roasted meats · 港式燒味</p>
+  </div>
+</footer>
+
+</body>
+</html>
